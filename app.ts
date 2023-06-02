@@ -55,7 +55,7 @@ for (let [path, routerFactory] of Object.entries(routes)) {
 }
 
 // Handle errors
-app.use((req, res: ResponseWithLayout) => {
+app.use((req: express.Request, res: ResponseWithLayout) => {
     if (res.statusCode === 500) {
         render(req, res, 'common/coded_err', {name: 'Server Error',
             description: 'The server encountered an internal error while serving your request.'},
