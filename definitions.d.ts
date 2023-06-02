@@ -8,5 +8,5 @@ interface ResponseWithLayout extends et.Response {
      * @param blocks Configuration for each yielded section from your layout.
      * @param callback An optional callback to be passed to res.render.
      */
-    layout(layout_file: String, data: Object, blocks: Object, callback?: Function): undefined;
+    layout(layout_file: string, data: object, blocks: object, callback?: Function): undefined;
 }
