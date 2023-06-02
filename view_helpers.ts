@@ -1,10 +1,8 @@
-const url = require('url');
-
 import * as et from 'express';
 import * as mt from 'mysql';
 import {ResponseWithLayout} from './definitions';
 
-export default (req: et.Request, res: ResponseWithLayout, pool: mt.Pool) => {
+export default (req: et.Request, _res: ResponseWithLayout, _pool: mt.Pool) => {
     /**
      * Dumb pluralization function - just adds 's' to the string if count is not 1.
      * @param singular The singular form of the word you wish to pluralize.
@@ -63,37 +61,37 @@ export default (req: et.Request, res: ResponseWithLayout, pool: mt.Pool) => {
     const strftime = (dt: Date, format: string): string => {
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    
+
         const mappers = {
             'S': () => dt.getSeconds().toString().padStart(2, '0'),
             'L': () => dt.getMilliseconds().toString().padStart(3, '0'),
             's': () => Math.floor(dt.getTime() / 1000),
-    
+
             'M': () => dt.getMinutes().toString().padStart(2, '0'),
-    
+
             'H': () => dt.getHours().toString().padStart(2, '0'),
             'I': () => (dt.getHours() % 12).toString().padStart(2, '0'),
             'k': () => dt.getHours().toString().padStart(2, ' '),
             'l': () => (dt.getHours() % 12).toString().padStart(2, ' '),
-    
+
             'a': () => days[dt.getDay()].substr(0, 3),
             'A': () => days[dt.getDay()],
             'd': () => dt.getDate().toString().padStart(2, '0'),
             'e': () => dt.getDate(),
-    
+
             'b': () => months[dt.getMonth()].substr(0, 3),
             'B': () => months[dt.getMonth()],
             'm': () => (dt.getMonth() + 1).toString().padStart(2, '0'),
-    
+
             'y': () => dt.getFullYear().toString().substr(2, 2),
             'Y': () => dt.getFullYear(),
-    
+
             'p': () => dt.getHours() < 12 ? 'am' : 'pm',
             'P': () => dt.getHours() < 12 ? 'AM' : 'PM',
-    
+
             '%': () => '%'
         };
-    
+
         const chars = format.split('');
         let formatted = '';
         for (let i = 0; i < chars.length; i++) {
