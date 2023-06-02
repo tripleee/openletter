@@ -4,8 +4,7 @@ import {queries} from './query_helpers';
 import * as et from 'express';
 import * as mt from 'mysql';
 import {User} from './models/user';
-import config from './config/config';
-import { BaseModel } from './models/base';
+
 import { ResponseWithLayout } from './definitions';
 
 // Calculating params here means slightly better performance later.
