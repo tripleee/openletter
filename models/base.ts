@@ -344,7 +344,7 @@ export class BaseModel {
         values = objectMap(attribs, (k, v) => v);
       }
       else if (Array.isArray(attribs)) {
-        attribs.push(['updated_at', new Date().toISOString()]);
+        attribs.push(['updated_at', new Date().toISOString().replace(/\.\d{3,4}Z$/, 'Z')]);
         params = attribs.map(x => x[0]).join(', ');
         values = attribs.map(x => x[1]);
       }
