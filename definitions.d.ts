@@ -1,6 +1,8 @@
 import * as et from 'express';
 
 interface ResponseWithLayout extends et.Response {
+    statusCode: number;
+
     /**
      * Specify a layout file to be used in the response.
      * @param layout_file The path to your layout, relative to your views directory.
