@@ -8,6 +8,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "skipLibCheck": true,
+        "lib": ["es7"],
+        "outDir": "build",
+        "target": "es5",
         "moduleResolution": "node"
     },
     "include": ["."],
