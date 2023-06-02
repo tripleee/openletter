@@ -21,4 +21,8 @@ jobs:
         script: |
             cd /app/openletter
             git pull
+            git pull
+            nvm use
+            npm install
+            npm run build
             sudo /bin/systemctl restart openletter.service
