@@ -23,6 +23,7 @@
   "scripts": {
     "exec": "exec",
     "test": "xo",
+    "lint": "xo --fix",
     "dashboard": "DEBUG=app:* node build/app.js",
     "build": "./build.sh || exit 1",
     "build-views": "./build-views.sh || exit 1",
