@@ -339,12 +339,12 @@ export class BaseModel {
       let params;
       let values;
       if (attribs instanceof Object) {
-        attribs['updated_at'] = new Date().toISOString().replace(/\.\d{3,4}Z$/, 'Z');
+        attribs['updated_at'] = new Date().toISOString().replace(/\.\d{3,4}Z$/, '');
         params = objectMap(attribs, k => `${QueryIntermediate.escapeName(k)} = ?`).join(', ');
         values = objectMap(attribs, (k, v) => v);
       }
       else if (Array.isArray(attribs)) {
-        attribs.push(['updated_at', new Date().toISOString().replace(/\.\d{3,4}Z$/, 'Z')]);
+        attribs.push(['updated_at', new Date().toISOString().replace(/\.\d{3,4}Z$/, '')]);
         params = attribs.map(x => x[0]).join(', ');
         values = attribs.map(x => x[1]);
       }
