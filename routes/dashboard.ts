@@ -17,6 +17,11 @@ export default (pool: mt.Pool, log): express.Router => {
         render(req, res, 'dashboard/dash', { signatories }, { pool });
     });
 
+
+    router.get('/faq-4ds21xFq', async (req: express.Request, res: ResponseWithLayout) => {
+        render(req, res, 'dashboard/faq', {}, { pool });
+    });
+
     router.post('/sign', async (req: express.Request, res: ResponseWithLayout) => {
         const displayName = req.body['display_name'] || null;
         const letter = req.body['letter'] || 'main';
