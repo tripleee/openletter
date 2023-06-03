@@ -1,5 +1,5 @@
-echo "> tsc -t es5 --lib es7 --outDir build ./*.ts" &&
-tsc -t es5 --lib es7 --outDir build ./*.ts &&
+echo "> tsc -t es5 --lib es7 --outDir build --esModuleInterop ./*.ts" &&
+tsc -t es5 --lib es7 --outDir build --esModuleInterop ./*.ts &&
 echo "> mkdir -p build/public/javascripts" &&
 mkdir -p build/public/javascripts &&
 echo "> uglifyjs public/javascripts/*.js -c --source-map -o build/public/javascripts/application.js" &&

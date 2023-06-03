@@ -7,7 +7,7 @@ const mysql = require('mysql');
 import createDebug from 'debug';
 require('colors'); // eslint-disable-line import/no-unassigned-import
 
-import * as express from 'express';
+import express from 'express';
 
 import { ResponseWithLayout } from './definitions';
 import {render} from './render_helpers';
