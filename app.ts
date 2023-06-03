@@ -1,10 +1,10 @@
-const path = require('path');
-const cookieParser = require('cookie-parser');
+import path from 'path';
+import cookieParser from 'cookie-parser';
 const bodyParser = require('body-parser');
-const sassMiddleware = require('node-sass-middleware');
-const layouts = require('ejs-layouts');
+import sassMiddleware from 'node-sass-middleware';
+import layouts from 'ejs-layouts';
 const mysql = require('mysql');
-const createDebug = require('debug');
+import createDebug from 'debug';
 require('colors'); // eslint-disable-line import/no-unassigned-import
 
 import * as express from 'express';
