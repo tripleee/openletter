@@ -17,18 +17,13 @@ export default (pool: mt.Pool, log): express.Router => {
         render(req, res, 'dashboard/dash', { signatories }, { pool });
     });
 
-    router.get('/lavender', async (req: express.Request, res: ResponseWithLayout) => {
-        const signatories = await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'lavender'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
-        const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('lavenderVersion')}-${signatories.length}`).digest('hex');
-        res.setHeader('ETag', etag);
-        render(req, res, 'dashboard/lavender', { signatories }, { pool });
+
+    router.get('/faq-4ds21xFq', async (req: express.Request, res: ResponseWithLayout) => {
+        render(req, res, 'dashboard/faq', {}, { pool });
     });
 
-    router.get('/strike', async (req: express.Request, res: ResponseWithLayout) => {
-        const signatories = await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'strike'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
-        const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('strikeVersion')}-${signatories.length}`).digest('hex');
-        res.setHeader('ETag', etag);
-        render(req, res, 'dashboard/strike', { signatories }, { pool });
+    router.get('/favicon.ico', async (req: express.Request, res: ResponseWithLayout) => {
+        res.redirect('/icon.png');
     });
 
     router.post('/sign', async (req: express.Request, res: ResponseWithLayout) => {

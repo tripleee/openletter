@@ -1,4 +1,4 @@
-<section class="letter">
+<section class="letter" id="letter">
     <p class="date text-muted">June 5, 2023</p>
 
     <h5>Stack Overflow, Inc. has decreed a <strong>near-total prohibition on moderating AI-generated content</strong> in
@@ -7,10 +7,10 @@
         plagiarism on the Stack Exchange network. This poses a major threat to the integrity and trustworthiness of the
         platform and its content.</h5>
     <hr>
-    <p>We, the undersigned, are volunteer moderators and curators of Stack Overflow and the Stack Exchange network.
-        Effective immediately, we are enacting a <strong>general moderation strike</strong> on Stack Overflow and the
-        Stack Exchange network, in protest of this and other recent and upcoming changes to policy and the platform that
-        are being forced upon us by Stack Overflow, Inc. </p>
+    <p>We, the undersigned, are volunteer moderators, contributors, and users of Stack Overflow and the Stack
+        Exchange network. Effective immediately, we are enacting a <strong>general moderation strike</strong> on Stack
+        Overflow and the Stack Exchange network, in protest of this and other recent and upcoming changes to policy and
+        the platform that are being forced upon us by Stack Overflow, Inc. </p>
     <p>Our efforts to effect change through proper channels have been ignored, and our concerns disregarded at every
         turn. Now, as a last resort, we are striking out of dedication to the platform that we have put over a decade of
         care and volunteer effort into. We deeply believe in the core mission of the Stack Exchange network: to provide
@@ -21,13 +21,17 @@
         answers to be freely posted, regardless of <a href="https://meta.stackexchange.com/q/384922/">established
             community consensus</a> on such content.</p>
     <p>In turn, this allows incorrect information (colloquially referred to as &quot;<a
-            href="https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence">hallucinations</a>)&quot;) and
+            href="https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)">hallucinations</a>&quot;) and
         plagiarism to proliferate unchecked on the platform. This destroys trust in the platform, as <a
             href="https://web.archive.org/web/20230531103704/https://stackoverflow.com/help/gpt-policy">Stack Overflow,
             Inc. has previously noted</a>.</p>
-    <p>In addition, these policies disregard the leeway historically granted to individual Stack Exchange communities to
-        determine their policies, by making changes without the input of the community, overriding community consensus,
-        and outright refusing to reconsider their position.</p>
+    <p>In addition, the details of the policies issued directly to moderators differ substantially from the guidelines
+        outlined publicly, with moderators barred from publicly sharing the details.
+    </p>
+    <p>
+        These policies disregard the leeway historically granted to individual Stack Exchange communities to determine
+        their policies, by making changes without the input of the community, overriding community consensus, and
+        outright refusing to reconsider their position.</p>
     <hr>
     <p>Until this matter is resolved satisfactorily, we will be pausing activities including, but not limited to:</p>
     <ul>
@@ -47,8 +51,13 @@
     </p>
 </section>
 
-<hr />
+<hr id="signatures" />
 
 <%- include('signatories', {signatories}) %>
 
     <%- include('signing', {letter: 'main' }) %>
+
+        <hr>
+
+        <h2 id="faq">FAQ</h2>
+        <%- include('faq') %>
