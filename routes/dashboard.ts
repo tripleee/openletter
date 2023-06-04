@@ -22,6 +22,10 @@ export default (pool: mt.Pool, log): express.Router => {
         render(req, res, 'dashboard/faq', {}, { pool });
     });
 
+    router.get('/favicon.ico', async (req: express.Request, res: ResponseWithLayout) => {
+        res.redirect('/icon.png');
+    });
+
     router.post('/sign', async (req: express.Request, res: ResponseWithLayout) => {
         const displayName = req.body['display_name'] || null;
         const letter = req.body['letter'] || 'main';

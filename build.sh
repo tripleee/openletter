@@ -4,5 +4,6 @@ echo "> uglifyjs public/javascripts/*.js -c --source-map -o build/public/javascr
 uglifyjs public/javascripts/*.js -c --source-map -o build/public/javascripts/application.js &&
 echo "> cp -r public/stylesheets build/public" &&
 cp -r public/stylesheets build/public &&
+cp public/icon.png build/public/icon.png &&
 echo "> cp -r views build" &&
 cp -r views build
