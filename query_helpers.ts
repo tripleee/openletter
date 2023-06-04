@@ -5,7 +5,7 @@ import mt from 'mysql2';
 import et from 'express';
 
 const queryLogger = createDebug('app:query');
-const helperLogger = createDebug('app:helpers'); // eslint-disable-line no-unused-vars
+createDebug('app:helpers'); // eslint-disable-line import/no-unassigned-import
 
 /**
  * Detect if a value is an object literal, i.e. declared with a literal or created with `new Object`.
