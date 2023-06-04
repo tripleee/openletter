@@ -26,10 +26,10 @@ $(() => {
 
     $('.color-mode-toggle').on('click', evt => {
         if (darkMode) {
-            $('#dark-sheet').attr('href', '#');
+            $('#dark-sheet').attr('media', 'prefers-color-scheme:light');
         }
         else {
-            $('#dark-sheet').attr('href', '/stylesheets/dark.css');
+            $('#dark-sheet').attr('media', 'prefers-color-scheme:dark');
         }
         darkMode = !darkMode;
     });
