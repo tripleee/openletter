@@ -1,8 +1,16 @@
+export type SiteSettings = Array<
+    | ["clientId", string]
+    | ["clientSecret", string]
+    | ["key", string]
+    | ["letterVersion", string]
+    | ["redirectUri", string]
+>;
+
 export interface ConfigOptions {
     database: DbConnectionOptions;
     port: number;
     secretKey: string;
-    siteSettings: Array<[string, string]>;
+    siteSettings: SiteSettings;
 }
 
 export interface ConnectionOptions {
@@ -17,7 +25,7 @@ export class Config {
     database: DbConnectionOptions;
     port: number;
     secretKey: string;
-    siteSettings: Array<[string, string]>;
+    siteSettings: SiteSettings;
 
     /**
      * Create a new configuration instance.
@@ -38,7 +46,7 @@ export class Config {
      * @param name the name of the site setting to find
      */
     getSiteSetting(name: string): any {
-        const matches = this.siteSettings.filter(s => s[0] === name);
+        const matches = this.siteSettings.filter((s) => s[0] === name);
         return matches.length > 0 ? matches[0][1] : null;
     }
 }
