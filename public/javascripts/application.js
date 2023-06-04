@@ -25,7 +25,7 @@ $(() => {
     let darkMode = false;
 
     $('.color-mode-toggle').on('click', evt => {
-        if (darkMode) {
+        if (!darkMode) {
             let link = document.createElement('link');
             link.href = 'stylesheets/dark.css';
             link.rel = 'stylesheet';
