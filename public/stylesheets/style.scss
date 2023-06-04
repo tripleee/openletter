@@ -232,14 +232,14 @@ section.signing {
 }
 
 nav {
-    display: fixed;
+    position: fixed;
     left: 0;
-    top: 15rem;
+    top: 5rem;
     display: block;
 
     ul {
         margin: 0;
-        padding: 0;
+        padding: 0.5rem;
 
         li {
             list-style-type: none;
