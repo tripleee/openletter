@@ -22,10 +22,12 @@
   },
   "scripts": {
     "exec": "exec",
+    "typecheck": "tsc --noEmit",
     "test": "xo",
-    "dashboard": "DEBUG=app:* node build/app.js",
-    "build": "./build.sh || exit 1",
-    "build-views": "./build-views.sh || exit 1",
+    "lint": "xo --fix",
+    "dashboard": "cross-env DEBUG=app:* node build/app.js",
+    "build": "sh ./build.sh || exit 1",
+    "build-views": "sh ./build-views.sh || exit 1",
     "console": "node ./build/console.js"
   },
   "dependencies": {
@@ -38,7 +40,7 @@
     "ejs-layouts": "^0.0.1",
     "express": "^4.17.1",
     "formidable": "^1.2.1",
-    "mysql": "^2.15.0",
+    "mysql2": "^3.3.3",
     "node-fetch": "^2.6.1",
     "node-sass-middleware": "^1.0.0",
     "serve-favicon": "~2.4.5",
@@ -47,12 +49,16 @@
     "uglify-es": "^3.3.9"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.5",
+    "@types/body-parser": "^1.19.2",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/debug": "^4.1.8",
+    "@types/ejs": "^3.1.2",
     "@types/express": "^4.17.0",
-    "@types/mysql": "^2.15.6",
     "@types/node": "^12.6.9",
     "@types/node-fetch": "^2.5.2",
+    "@types/node-sass-middleware": "^0.0.32",
     "@types/stripe": "^6.31.4",
+    "cross-env": "^7.0.3",
     "node-gyp": "^9.3.1",
     "npm-watch": "^0.6.0",
     "xo": "^0.18.2"

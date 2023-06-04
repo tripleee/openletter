@@ -1,13 +1,13 @@
-const path = require('path');
-const cookieParser = require('cookie-parser');
+import path from 'path';
+import cookieParser from 'cookie-parser';
 const bodyParser = require('body-parser');
-const sassMiddleware = require('node-sass-middleware');
-const layouts = require('ejs-layouts');
-const mysql = require('mysql');
-const createDebug = require('debug');
+import sassMiddleware from 'node-sass-middleware';
+import layouts from 'ejs-layouts';
+import mysql from 'mysql2';
+import createDebug from 'debug';
 require('colors'); // eslint-disable-line import/no-unassigned-import
 
-import * as express from 'express';
+import express from 'express';
 
 import { ResponseWithLayout } from './definitions';
 import {render} from './render_helpers';
@@ -55,7 +55,7 @@ for (let [path, routerFactory] of Object.entries(routes)) {
 }
 
 // Handle errors
-app.use((req, res: ResponseWithLayout) => {
+app.use((req: express.Request, res: ResponseWithLayout) => {
     if (res.statusCode === 500) {
         render(req, res, 'common/coded_err', {name: 'Server Error',
             description: 'The server encountered an internal error while serving your request.'},

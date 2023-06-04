@@ -1,11 +1,10 @@
 const aes = require('aes-js');
 
 import {queries} from './query_helpers';
-import * as et from 'express';
-import * as mt from 'mysql';
+import et from 'express';
+import mt from 'mysql2';
 import {User} from './models/user';
-import config from './config/config';
-import { BaseModel } from './models/base';
+
 import { ResponseWithLayout } from './definitions';
 
 // Calculating params here means slightly better performance later.
@@ -67,8 +66,8 @@ export const getSecretKey = async (pool: mt.Pool): Promise<Buffer> => {
  * @param password the plaintext password to transform
  * @returns {Promise} resolves get passed a hex string; rejects get an error
  */
-export const hashPassword = async (password: string): Promise<string> => {
-  return new Promise<string>(async (resolve, reject) => {
+export const hashPassword = async (_password: string): Promise<string> => {
+  return new Promise<string>(async (_resolve, reject) => {
     try {
       // Currently SHA-256 and PKCS HMAC - covers one-way hash and message authentication.
       //const hash = await scrypt.kdf(password, scryptParams);
@@ -86,8 +85,8 @@ export const hashPassword = async (password: string): Promise<string> => {
  * @param plain the plaintext to compare
  * @returns {Promise} resolves get passed a boolean; rejects get an error
  */
-export const verifyPassword = async (hashed: string, plain: string): Promise<string> => {
-  return new Promise<string>(async (resolve, reject) => {
+export const verifyPassword = async (_hashed: string, _plain: string): Promise<string> => {
+  return new Promise<string>(async (_resolve, reject) => {
     try {
       // const result = await scrypt.verifyKdf(Buffer.from(hashed, 'hex'), plain);
       // resolve(result);
