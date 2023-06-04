@@ -1,5 +1,5 @@
 import createDebug from 'debug';
-const ejs = require('ejs');
+import ejs from 'ejs';
 
 const renderLogger = createDebug('app:render');
 
