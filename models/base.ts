@@ -12,7 +12,7 @@ const debug = createDebug('app:models:base');
  * @param cb a callback to call for each value - receives key and value as params
  * @returns {Array} containing the mapped values
  */
-export const objectMap = (o: object, cb: Function): Array<any> => {
+export const objectMap = <T extends object, U extends (k: string, v: T[keyof T]) => unknown>(o: T, cb: U): Array<any> => {
   const keys = Object.keys(o);
   const result = [];
   keys.forEach(k => {
@@ -306,7 +306,7 @@ export class BaseModel {
    */
   async save(): Promise<boolean> {
     const names = QueryIntermediate.escapeNames(Object.keys(this.attribs)).join(', ');
-    const values = objectMap(this.attribs, (k, v) => v);
+    const values = objectMap(this.attribs, (_, v) => v);
     const params = new Array(values.length).fill('?').join(', ');
     const data = await query(BaseModel.pool, [values], `INSERT INTO ${this.tableName} (${names}) VALUES (${params});`);
     const { err } = data[0];
@@ -341,7 +341,7 @@ export class BaseModel {
       if (attribs instanceof Object) {
         attribs['updated_at'] = new Date().toISOString().replace(/\.\d{3,4}Z$/, '');
         params = objectMap(attribs, k => `${QueryIntermediate.escapeName(k)} = ?`).join(', ');
-        values = objectMap(attribs, (k, v) => v);
+        values = objectMap(attribs, (_, v) => v);
       }
       else if (Array.isArray(attribs)) {
         attribs.push(['updated_at', new Date().toISOString().replace(/\.\d{3,4}Z$/, '')]);
