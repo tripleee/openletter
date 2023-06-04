@@ -1,3 +1,18 @@
+export interface ConfigOptions {
+    database: DbConnectionOptions;
+    port: number;
+    secretKey: string;
+    siteSettings: Array<[string, string]>;
+}
+
+export interface ConnectionOptions {
+    host: string;
+    user: string;
+    password: string;
+    database: string;
+    connectionLimit: number;
+}
+
 export class Config {
     database: DbConnectionOptions;
     port: number;
@@ -11,7 +26,7 @@ export class Config {
      * @param secretKey A secret key for encryption within your application.
      * @param siteSettings An array of key-value site settings.
      */
-    constructor({database, port, secretKey, siteSettings}: {database: DbConnectionOptions, port: number, secretKey: string, siteSettings: Array<[string, string]>}) {
+    constructor({ database, port, secretKey, siteSettings }: ConfigOptions) {
         this.database = database;
         this.port = port;
         this.secretKey = secretKey;
@@ -43,7 +58,13 @@ export class DbConnectionOptions {
      * @param database The database to scope the connection to.
      * @param connectionLimit The maximum number of connections to allow in the connection pool.
      */
-    constructor({host, user, password, database, connectionLimit}: {host: string, user: string, password: string, database: string, connectionLimit: number}) {
+    constructor({
+        host,
+        user,
+        password,
+        database,
+        connectionLimit,
+    }: ConnectionOptions) {
         this.host = host;
         this.user = user;
         this.password = password;
@@ -52,6 +73,12 @@ export class DbConnectionOptions {
     }
 
     connectionObject() {
-        return {host: this.host, user: this.user, password: this.password, database: this.database, connectionLimit: this.connectionLimit};
+        return {
+            host: this.host,
+            user: this.user,
+            password: this.password,
+            database: this.database,
+            connectionLimit: this.connectionLimit,
+        };
     }
 }
