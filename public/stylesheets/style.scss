@@ -224,3 +224,27 @@ section.signing {
     padding-bottom: 0.5rem;
     text-align: center;
 }
+
+@media (max-width: 500px) {
+    nav {
+        display: none;
+    }
+}
+
+nav {
+    display: fixed;
+    left: 0;
+    top: 15rem;
+    display: block;
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
