@@ -1,8 +1,8 @@
-const createDebug = require('debug');
+import createDebug from 'debug';
 
 import { query } from '../query_helpers';
 import { QueryIntermediate } from './query_intermediate';
-import * as mt from 'mysql';
+import mt from 'mysql2';
 
 const debug = createDebug('app:models:base');
 

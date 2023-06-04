@@ -1,5 +1,5 @@
-import * as et from 'express';
-import * as mt from 'mysql';
+import et from 'express';
+import mt from 'mysql2';
 import {ResponseWithLayout} from './definitions';
 
 export default (req: et.Request, _res: ResponseWithLayout, _pool: mt.Pool) => {

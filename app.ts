@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 const bodyParser = require('body-parser');
 import sassMiddleware from 'node-sass-middleware';
 import layouts from 'ejs-layouts';
-const mysql = require('mysql');
+import mysql from 'mysql2';
 import createDebug from 'debug';
 require('colors'); // eslint-disable-line import/no-unassigned-import
 

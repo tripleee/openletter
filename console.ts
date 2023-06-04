@@ -1,5 +1,5 @@
-import * as repl from 'repl';
-import * as mysql from 'mysql';
+import repl from 'repl';
+import mysql from 'mysql2';
 
 import * as queryHelpers from './query_helpers';
 import * as renderHelpers from './render_helpers';

@@ -1,8 +1,8 @@
 const aes = require('aes-js');
 
 import {queries} from './query_helpers';
-import * as et from 'express';
-import * as mt from 'mysql';
+import et from 'express';
+import mt from 'mysql2';
 import {User} from './models/user';
 
 import { ResponseWithLayout } from './definitions';

@@ -1,11 +1,11 @@
-import * as express from 'express';
-import * as mt from 'mysql';
+import express from 'express';
+import mt from 'mysql2';
 import { URLSearchParams } from 'url';
 import { render, error } from '../render_helpers';
 import config from '../config/config';
 import { Signatory } from '../models/signatory';
 import { ResponseWithLayout } from '../definitions';
-import * as crypto from 'crypto';
+import crypto from 'crypto';
 const fetch = require('node-fetch');
 const router = express.Router(); // eslint-disable-line new-cap
 

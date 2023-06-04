@@ -1,11 +1,11 @@
-const createDebug = require('debug');
+import createDebug from 'debug';
 const ejs = require('ejs');
 
 const renderLogger = createDebug('app:render');
 
 import {ResponseWithLayout} from './definitions';
-import * as et from 'express';
-import * as mt from 'mysql';
+import et from 'express';
+import mt from 'mysql2';
 import {getUser} from './user_helpers';
 import viewHelpers from './view_helpers';
 import {BaseModel} from './models/base';
