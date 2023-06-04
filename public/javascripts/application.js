@@ -26,10 +26,15 @@ $(() => {
 
     $('.color-mode-toggle').on('click', evt => {
         if (darkMode) {
-            document.body.colorScheme = 'dark';
+            let link = document.createElement('link');
+            link.href = 'stylesheets/dark.css';
+            link.rel = 'stylesheet';
+            link.id = 'dark-sheet';
+            document.head.appendChild(link);
         }
         else {
-            document.body.colorScheme = 'light';
+            let darkSheet = document.getElementById('dark-sheet');
+            darkSheet.parentElement.removeChild(darkSheet);
         }
         darkMode = !darkMode;
     });
