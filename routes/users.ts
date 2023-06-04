@@ -5,9 +5,10 @@ import {hashPassword, verifyPassword, setUser, authOrNext, requireAuth} from '..
 import {render, error} from '../render_helpers';
 import {User} from '../models/user';
 import {ResponseWithLayout} from '../definitions';
+import type { Debugger } from 'debug'
 const router = express.Router(); // eslint-disable-line new-cap
 
-export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line no-unused-vars
+export default (pool: mt.Pool, _log: Debugger): express.Router => {
   router.get('/new', (req: express.Request, res: ResponseWithLayout) => {
     render(req, res, 'users/new', {errors: [], user: new User({})}, {pool});
   });
