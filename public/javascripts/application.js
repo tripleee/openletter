@@ -23,7 +23,8 @@ $(() => {
             } 
             else {
                 let darkSheet = document.getElementById('dark-sheet');
-                darkSheet.parentElement.removeChild(darkSheet);
+                if (darkSheet)
+                    darkSheet.parentElement.removeChild(darkSheet);
             }
             this.darkMode = darkMode;
             try {
