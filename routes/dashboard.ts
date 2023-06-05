@@ -14,10 +14,12 @@ export default (pool: mt.Pool, _log: Debugger): express.Router => {
     router.get('/', async (req: express.Request, res: ResponseWithLayout) => {
         const signatories = (
             await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'main'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get()
-        ).map((signatory) => ({
-            ...signatory,
-            created_at: signatory.created_at > '2023-06-05T04:00:00Z' ? signatory.created_at : '2023-06-05T04:00:00Z'
-        }));
+        ).map((signatory: Signatory) => {
+            return {
+                ...signatory,
+                created_at: signatory.created_at > '2023-06-05T04:00:00Z' ? signatory.created_at : '2023-06-05T04:00:00Z'
+            }
+        };
         const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('letterVersion')}-${signatories.length}`).digest('hex');
         res.setHeader('ETag', etag);
         render(req, res, 'dashboard/dash', { signatories }, { pool });
