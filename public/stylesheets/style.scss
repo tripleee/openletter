@@ -176,6 +176,7 @@ section.signatories {
         line-height: 1;
         margin-bottom: 0.5em;
         overflow-wrap: break-word;
+        min-width: 0;
 
         &:hover {
             background: #EEE;
