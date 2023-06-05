@@ -34,6 +34,10 @@ export default (pool: mt.Pool, _log: Debugger): express.Router => {
             error(req, res, 'You may not use the ♦ character in your display name.', pool);
             return;
         }
+        if (displayName.indexOf('◊') !== -1) {
+            error(req, res, 'You may not use the ◊ character in your display name.', pool);
+            return;
+        }
         const signatory: Signatory = await <Promise<Signatory>>Signatory.create({ display_name: displayName, letter });
         res.redirect(`https://stackexchange.com/oauth?client_id=${config.getSiteSetting('clientId')}&scope=&state=${signatory.id}|${letter}&redirect_uri=${config.getSiteSetting('redirectUri')}`);
     });
