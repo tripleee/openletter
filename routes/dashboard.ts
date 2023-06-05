@@ -19,7 +19,7 @@ export default (pool: mt.Pool, _log: Debugger): express.Router => {
                 ...signatory,
                 created_at: signatory.created_at > '2023-06-05T04:00:00Z' ? signatory.created_at : '2023-06-05T04:00:00Z'
             }
-        };
+        });
         const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('letterVersion')}-${signatories.length}`).digest('hex');
         res.setHeader('ETag', etag);
         render(req, res, 'dashboard/dash', { signatories }, { pool });
