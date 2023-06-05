@@ -1,5 +1,5 @@
 import {query} from '../query_helpers';
-import * as mt from 'mysql';
+import mt from 'mysql2';
 import {BaseModel} from './base';
 
 

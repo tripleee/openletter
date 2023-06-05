@@ -1,17 +1,25 @@
-import * as express from 'express';
-import * as mt from 'mysql';
+import express from 'express';
+import mt from 'mysql2';
 import { URLSearchParams } from 'url';
 import { render, error } from '../render_helpers';
 import config from '../config/config';
 import { Signatory } from '../models/signatory';
 import { ResponseWithLayout } from '../definitions';
-import * as crypto from 'crypto';
+import crypto from 'crypto';
+import type { Debugger } from 'debug'
 const fetch = require('node-fetch');
 const router = express.Router(); // eslint-disable-line new-cap
 
-export default (pool: mt.Pool, log): express.Router => {
+export default (pool: mt.Pool, _log: Debugger): express.Router => {
     router.get('/', async (req: express.Request, res: ResponseWithLayout) => {
-        const signatories = await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'main'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
+        const signatories = (
+            await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'main'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get()
+        ).map((signatory: Signatory) => {
+            return {
+                ...signatory,
+                created_at: signatory.created_at > '2023-06-05T04:00:00Z' ? signatory.created_at : '2023-06-05T04:00:00Z'
+            }
+        });
         const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('letterVersion')}-${signatories.length}`).digest('hex');
         res.setHeader('ETag', etag);
         render(req, res, 'dashboard/dash', { signatories }, { pool });
@@ -22,7 +30,7 @@ export default (pool: mt.Pool, log): express.Router => {
         render(req, res, 'dashboard/faq', {}, { pool });
     });
 
-    router.get('/favicon.ico', async (req: express.Request, res: ResponseWithLayout) => {
+    router.get('/favicon.ico', async (_req: express.Request, res: ResponseWithLayout) => {
         res.redirect('/icon.png');
     });
 
@@ -31,6 +39,10 @@ export default (pool: mt.Pool, log): express.Router => {
         const letter = req.body['letter'] || 'main';
         if (displayName.indexOf('♦') !== -1) {
             error(req, res, 'You may not use the ♦ character in your display name.', pool);
+            return;
+        }
+        if (displayName.indexOf('◊') !== -1) {
+            error(req, res, 'You may not use the ◊ character in your display name.', pool);
             return;
         }
         const signatory: Signatory = await <Promise<Signatory>>Signatory.create({ display_name: displayName, letter });

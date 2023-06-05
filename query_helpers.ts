@@ -1,11 +1,11 @@
-const createDebug = require('debug');
+import createDebug from 'debug';
 require('colors'); // eslint-disable-line import/no-unassigned-import
 
-import * as mt from 'mysql';
-import * as et from 'express';
+import mt from 'mysql2';
+import et from 'express';
 
 const queryLogger = createDebug('app:query');
-const helperLogger = createDebug('app:helpers'); // eslint-disable-line no-unused-vars
+createDebug('app:helpers'); // eslint-disable-line import/no-unassigned-import
 
 /**
  * Detect if a value is an object literal, i.e. declared with a literal or created with `new Object`.
@@ -14,12 +14,12 @@ const helperLogger = createDebug('app:helpers'); // eslint-disable-line no-unuse
 export const isObjectLiteral = (obj: any): boolean => {
   let _test  = obj;
   return (typeof obj !== 'object' || obj === null ?
-          false :  
+          false :
           (() => {
             while (!false) {
               if (Object.getPrototypeOf(_test = Object.getPrototypeOf(_test)) === null) {
                 break;
-              }      
+              }
             }
             return Object.getPrototypeOf(obj) === _test;
           })());
@@ -80,7 +80,6 @@ export const queries = (pool: mt.Pool, params: Array<any> = [], ...queries: Arra
           queryLogger(`${'▮'['red']} ${q}`);
           queryLogger(`${'▮'['red']} ${pp(queryParams)}`);
           queryLogger(`${'▮'['red']} ${err}`);
-          queryLogger(`${'▮'['red']} ${err.sql}`);
           queryLogger(`${'▮ END FAILED QUERY ▮'['red']}`);
           resolve({err});
         }
@@ -173,5 +172,5 @@ export const parameters = (req: et.Request, options: object): object => {
  * @returns {Array} an array without the item previously at the specified index
  */
 export const removeFromArray = (arr: Array<any>, index: number) => {
-  return arr.filter((el, i) => i !== index);
+  return arr.filter((_el, i) => i !== index);
 };

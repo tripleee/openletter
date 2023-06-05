@@ -1,13 +1,14 @@
-import * as express from 'express';
-import * as mt from 'mysql';
+import express from 'express';
+import mt from 'mysql2';
 import {query, parameters} from '../query_helpers';
-import {hashPassword, verifyPassword, getUser, setUser, authOrNext, requireAuth} from '../user_helpers';
+import {hashPassword, verifyPassword, setUser, authOrNext, requireAuth} from '../user_helpers';
 import {render, error} from '../render_helpers';
 import {User} from '../models/user';
 import {ResponseWithLayout} from '../definitions';
+import type { Debugger } from 'debug'
 const router = express.Router(); // eslint-disable-line new-cap
 
-export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line no-unused-vars
+export default (pool: mt.Pool, _log: Debugger): express.Router => {
   router.get('/new', (req: express.Request, res: ResponseWithLayout) => {
     render(req, res, 'users/new', {errors: [], user: new User({})}, {pool});
   });
@@ -88,7 +89,7 @@ export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line 
     }
   });
 
-  router.post('/logout', (req: express.Request, res: ResponseWithLayout) => {
+  router.post('/logout', (_req: express.Request, res: ResponseWithLayout) => {
     res.clearCookie('checko_session');
     res.redirect('/');
   });
@@ -96,7 +97,7 @@ export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line 
   router.get('/me', async (req: express.Request, res: ResponseWithLayout) => {
     const user: User = await <Promise<User>>requireAuth(req, res, pool);
     if (user) {
-      render(req, res, 'users/me', {}, {pool});     
+      render(req, res, 'users/me', {}, {pool});
     }
     else {
       res.redirect('/users/login');
@@ -105,14 +106,14 @@ export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line 
 
   router.get('/:userId/edit', async (req: express.Request, res: ResponseWithLayout, next: Function) => {
     const targetUser = await User.find(parseInt(req.params['userId'], 10));
-    await authOrNext((user: User) => user['id'].toString() === req.params['userId'].toString(), (user: User) => {
+    await authOrNext((user: User) => user['id'].toString() === req.params['userId'].toString(), (_user: User) => {
       render(req, res, 'users/edit', {errors: [], user: targetUser}, {pool});
     }, {req, res, next, pool});
   });
 
   router.post('/:userId/edit', async (req: express.Request, res: ResponseWithLayout, next: Function) => {
     const targetUser: User = await <Promise<User>>User.find(parseInt(req.params['userId'], 10));
-    await authOrNext((user: User) => user['id'].toString() === req.params['userId'].toString(), async (currentUser: User) => {
+    await authOrNext((user: User) => user['id'].toString() === req.params['userId'].toString(), async (_currentUser: User) => {
       const {errors, username, email, password, first_name, last_name, phone, current_password}: any = parameters(req, {
         username: { required: true },
         email: { required: true },
@@ -122,7 +123,7 @@ export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line 
         phone: { required: false },
         current_password: { required: true }
       });
-  
+
       if (errors.length > 0) {
         render(req, res, 'users/edit', {errors, user: targetUser}, {pool});
       }
@@ -138,7 +139,7 @@ export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line 
         if (!!password) {
           attribs['password'] = await hashPassword(password);
         }
-  
+
         try {
           query(pool, [[]], 'BEGIN;');
           await targetUser.update(attribs);

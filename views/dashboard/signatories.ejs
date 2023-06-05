@@ -16,7 +16,7 @@
                                     <span title="former moderator or former employee">&loz;</span>
                                     <% } %>
                 </a><br />
-                <small class="text-muted">
+                <small class="text-muted" data-modified-at="<%= sig.created_at %>">
                     <%= strftime(new Date(Date.parse(sig.created_at)), '%b %e' ) %>
                 </small>
             </p>
