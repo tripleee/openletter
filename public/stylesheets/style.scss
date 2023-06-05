@@ -175,8 +175,7 @@ section.signatories {
         border-radius: 4px;
         line-height: 1;
         margin-bottom: 0.5em;
-        word-break: break-all;
-        text-overflow: ellipsis;
+        overflow-wrap: break-word;
 
         &:hover {
             background: #EEE;
