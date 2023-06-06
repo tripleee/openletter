@@ -19,7 +19,7 @@ export default (pool: mt.Pool, _log: Debugger): express.Router => {
         ).map((signatory: Signatory) => {
             return {
                 ...signatory,
-                created_at: new Date(signatory.created_at) >= minimumDate ? new Date(signatory.created_at) : minimumDate,
+                created_at: signatory.created_at >= minimumDate ? signatory.created_at : minimumDate,
                 original_created_at: signatory.created_at
             }
         });
