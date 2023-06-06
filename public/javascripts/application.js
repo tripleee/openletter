@@ -5,31 +5,28 @@ $(() => {
   let text;
 
   const switcher = {
-    darkMode: false,
+    darkMode: window.matchMedia('(prefers-color-scheme:dark)').matches,
     init() {
       try {
-        const storageValue = window.localStorage.getItem(darkModeKey);
-        const darkMode = storageValue === 'true';
-        this.switchMode(darkMode);
+        const stored = window.localStorage.getItem(darkModeKey);
+
+        if (stored !== null) {
+          const darkMode = stored === 'true';
+          this.switchMode(darkMode);
+        }
       } catch (e) {
         // ignore
       }
     },
     switchMode(darkMode) {
-      if (darkMode) {
-        const link = document.createElement('link');
-        link.href = 'stylesheets/dark.css';
-        link.rel = 'stylesheet';
-        link.id = 'dark-sheet';
-        document.head.appendChild(link);
+      const link = document.querySelector('link[href$=\'dark.css\']');
+
+      if (link) {
+        link.disabled = !darkMode;
       }
-      else {
-        const darkSheet = document.getElementById('dark-sheet');
-        if (darkSheet) {
-          darkSheet.parentElement.removeChild(darkSheet);
-        }
-      }
+
       this.darkMode = darkMode;
+
       try {
         window.localStorage.setItem(darkModeKey, this.darkMode);
       } catch (e) {
