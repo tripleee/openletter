@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "allowJs": true,
         "esModuleInterop": true,
         "declaration": false,
         "noEmit": true,
@@ -14,5 +13,5 @@
         "moduleResolution": "node"
     },
     "include": ["."],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "public/javascripts"]
 }
