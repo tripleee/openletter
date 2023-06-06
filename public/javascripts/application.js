@@ -1,4 +1,6 @@
 $(() => {
+  const darkModeKey = 'darkMode';
+
   let expanded = false;
   let text;
 
@@ -6,11 +8,11 @@ $(() => {
     darkMode: false,
     init() {
       try {
-        const storageValue = window.localStorage.getItem('darkMode');
+        const storageValue = window.localStorage.getItem(darkModeKey);
         const darkMode = storageValue === 'true';
         this.switchMode(darkMode);
       } catch (e) {
-                // ignore
+        // ignore
       }
     },
     switchMode(darkMode) {
@@ -23,13 +25,15 @@ $(() => {
       }
       else {
         const darkSheet = document.getElementById('dark-sheet');
-        darkSheet.parentElement.removeChild(darkSheet);
+        if (darkSheet) {
+          darkSheet.parentElement.removeChild(darkSheet);
+        }
       }
       this.darkMode = darkMode;
       try {
-        window.localStorage.setItem('darkMode', this.darkMode);
+        window.localStorage.setItem(darkModeKey, this.darkMode);
       } catch (e) {
-                // ignore
+        // ignore
       }
     },
     toggleDarkMode() {
