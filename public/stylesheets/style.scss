@@ -110,7 +110,6 @@ section.letter {
     }
 
     h2 {
-        font-family: 'Open Sans', sans-serif;
         font-size: 14pt;
         font-weight: 600;
         color: #17a7db;
@@ -206,6 +205,18 @@ section.signing {
     button.btn-primary {
         background: #17a7db;
         border-color: #17a7db;
+    }
+}
+
+section.faq {
+
+    h4 {
+        margin-top: 1.5em;
+        margin-bottom: 1rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
     }
 }
 
