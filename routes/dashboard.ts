@@ -10,6 +10,8 @@ import type { Debugger } from 'debug'
 const fetch = require('node-fetch');
 const router = express.Router(); // eslint-disable-line new-cap
 
+const minimumDate = new Date('2023-06-05T04:00:00Z')
+
 export default (pool: mt.Pool, _log: Debugger): express.Router => {
     router.get('/', async (req: express.Request, res: ResponseWithLayout) => {
         const signatories = (
@@ -17,7 +19,7 @@ export default (pool: mt.Pool, _log: Debugger): express.Router => {
         ).map((signatory: Signatory) => {
             return {
                 ...signatory,
-                created_at: signatory.created_at >= '2023-06-05 04:00:00Z' ? signatory.created_at : '2023-06-05 04:00:00Z',
+                created_at: new Date(signatory.created_at) >= minimumDate ? new Date(signatory.created_at) : minimumDate,
                 original_created_at: signatory.created_at
             }
         });
