@@ -13,12 +13,14 @@ main {
 }
 
 aside {
-    background: #3a2e00;
+    background: #453700;
     color: #ddd;
+    border-color: #666;
 }
 aside.danger {
     background-color: #4f0000;
     color: #ddd;
+    border-color: #666;
 }
 
 .text-muted a {
