@@ -32,7 +32,7 @@ $(() => {
       }
 
       this.darkMode = darkMode;
-      
+
       // Save dark mode preference to local storage
       try {
         window.localStorage.setItem(darkModeKey, this.darkMode);
