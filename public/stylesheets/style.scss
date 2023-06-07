@@ -34,9 +34,13 @@ p {
     line-height: 1.6;
 }
 
-li {
-    margin-bottom: 0.3em;
-    line-height: 1.35;
+ol, ul {
+    margin-bottom: 1.5rem;
+    
+    li {
+        margin-bottom: 0.3em;
+        line-height: 1.35;
+    }
 }
 
 hr {
@@ -314,6 +318,6 @@ section.faq {
     padding-top: 0.8rem;
     padding-bottom: 1.5rem;
     text-align: center;
-    font-size: 11pt;
+    font-size: 10pt;
     line-height: 1.35;
 }
