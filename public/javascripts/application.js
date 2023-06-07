@@ -25,14 +25,14 @@ $(() => {
       });
     },
     switchMode(darkMode) {
-      const link = document.querySelector('link[href$=\'dark.css\']');
+      const link = document.querySelector('link[href*=\'dark.css\']');
 
       if (link) {
         link.disabled = !darkMode;
       }
 
       this.darkMode = darkMode;
-      
+
       // Save dark mode preference to local storage
       try {
         window.localStorage.setItem(darkModeKey, this.darkMode);

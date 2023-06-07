@@ -1,3 +1,6 @@
+// Important: When editing this file change the version number in views/layouts/application.ejs
+// Otherwise people will still have the old version cached
+
 body {
     --header-height: 58px;
     padding-top: var(--header-height);
@@ -10,7 +13,18 @@ small {
     font-size: 10pt;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-bottom: 0.5em;
     line-height: 1.4;
 }
@@ -39,11 +53,13 @@ hr {
 
 /* Offset anchors for fixed header https://stackoverflow.com/a/24298427 */
 [id]::before {
-  content: '';
-  display: block;
-  height:      calc(var(--header-height) + 1.5rem); /* fixed header height + padding */
-  margin-top:  calc(-1 * (var(--header-height) + 1.5rem)); /* (negative of) fixed header height + padding */
-  visibility: hidden;
+    content: '';
+    display: block;
+    height: calc(var(--header-height) + 1.5rem);
+    /* fixed header height + padding */
+    margin-top: calc(-1 * (var(--header-height) + 1.5rem));
+    /* (negative of) fixed header height + padding */
+    visibility: hidden;
 }
 
 header {
@@ -73,22 +89,22 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        
+
         .header-nav {
-            text-shadow: 0 0 1px rgba(0,0,0,0.5);
-            
+            text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+
             ul {
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;   
+                justify-content: flex-start;
                 list-style: none;
                 margin: 0;
                 padding: 0;
-                
+
                 li {
                     margin: 0 0.8em 0 0;
                     padding: 0;
-                    
+
                     a {
                         padding: 0.5em 0em;
                         color: white !important; // override dark mode link color
@@ -121,14 +137,14 @@ aside {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e6dfc6;
-    
-    & > i:first-child {
+
+    &>i:first-child {
         margin-right: 1rem;
     }
 
     p {
         font-size: 0.9em;
-        
+
         &:last-child {
             margin-bottom: 0;
         }
@@ -211,7 +227,7 @@ section.signatories {
     max-height: 25em;
     overflow-y: scroll;
     border-bottom: 1px solid #DDD;
-    
+
     &.expanded {
         max-height: unset;
         overflow-y: hidden;
