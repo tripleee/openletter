@@ -52,9 +52,15 @@ a {
     border-color: #3396ff !important;
 }
 
-input[type="text"] {
-    background: #666;
-    color: white;
+.form-control {
+    color: #ffffff;
+    background: #2c2c2c;
+    border: 1px solid #ced4da;
+
+    &:focus {
+        color: #ffffff;
+        background: #444;
+    }
 }
 
 .footer {
