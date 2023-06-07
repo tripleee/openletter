@@ -36,7 +36,23 @@
 <body>
     <header>
         <div class="header-inner col-12 col-xl-6 col-lg-8 col-md-10 mx-auto">
-            <div class="color-mode-toggle" title="Toggle light/dark mode"></div>
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <a href="#letter">Letter</a>
+                    </li>
+                    <li>
+                        <a href="#signatures">Signatures</a>
+                    </li>
+                    <li>
+                        <a href="#sign">Sign</a>
+                    </li>
+                    <li>
+                        <a href="#faq">FAQ</a>
+                    </li>
+                </ul>
+            </nav>
+            <button type="button" class="color-mode-toggle" title="Toggle light/dark mode"></button>
         </div>
     </header>
     <div class="content-container col-12 col-xl-6 col-lg-8 col-md-10 mx-auto">
@@ -62,20 +78,6 @@
             <%- content %>
         </main>
     </div>
-
-    <nav class="left-sidebar d-none d-md-block">
-        <ul>
-            <li>
-                <a href="#letter">Letter</a>
-            </li>
-            <li>
-                <a href="#signatures">Signatures</a>
-            </li>
-            <li>
-                <a href="#faq">FAQ</a>
-            </li>
-        </ul>
-    </nav>
 
     <div class="footer m-3 mt-4 text-muted">
         This page was originally designed by <a href="https://github.com/ArtOfCode-">ArtOfCode</a>. If you see a

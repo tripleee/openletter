@@ -7,6 +7,7 @@ $(() => {
   const switcher = {
     darkMode: window.matchMedia('(prefers-color-scheme:dark)').matches,
     init() {
+      // Fetch dark mode preference from local storage
       try {
         const stored = window.localStorage.getItem(darkModeKey);
 
@@ -17,6 +18,11 @@ $(() => {
       } catch (e) {
         // ignore
       }
+
+      // Add event listener to toggle dark mode
+      $(document).on('click', '.color-mode-toggle', () => {
+        this.toggleDarkMode();
+      });
     },
     switchMode(darkMode) {
       const link = document.querySelector('link[href$=\'dark.css\']');
@@ -26,7 +32,8 @@ $(() => {
       }
 
       this.darkMode = darkMode;
-
+      
+      // Save dark mode preference to local storage
       try {
         window.localStorage.setItem(darkModeKey, this.darkMode);
       } catch (e) {
@@ -38,8 +45,10 @@ $(() => {
     }
   };
 
+  switcher.init();
+
+  // Toggle signatory panel
   $('.js-expand-signatories').on('click', evt => {
-    evt.preventDefault();
     if (expanded) {
       $('.signatory-panel, .shadow').css({
         'max-height': '30em',
@@ -56,11 +65,6 @@ $(() => {
       $(evt.target).html('Contract &uarr;');
     }
     expanded = !expanded;
-  });
-
-  switcher.init();
-
-  $('.color-mode-toggle').on('click', () => {
-    switcher.toggleDarkMode();
+    return false;
   });
 });
