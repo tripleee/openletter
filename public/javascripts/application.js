@@ -25,7 +25,7 @@ $(() => {
       });
     },
     switchMode(darkMode) {
-      const link = document.querySelector('link[href$=\'dark.css\']');
+      const link = document.querySelector('link[href*="dark.css"]');
 
       if (link) {
         link.disabled = !darkMode;
