@@ -119,11 +119,10 @@ aside {
     background: #FFF8DC;
     padding: 1.7em 2em 1.7em;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     border-bottom: 1px solid #e6dfc6;
     
-    & > .fas:first-child {
-        margin-left: 1rem;
+    & > i:first-child {
         margin-right: 1rem;
     }
 
