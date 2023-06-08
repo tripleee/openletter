@@ -2,16 +2,20 @@
     <h5>Signed,</h5>
 
     <div class="signatory-panel">
+        <% var count = {'mod': 0, 'ex': 0, 'other': 0}; %>
         <% signatories.forEach(sig=> { %>
+            <% ++count['other']; %>
             <p>
                 <a href="https://stackexchange.com/users/<%= sig.se_acct_id %>?tab=accounts" rel="noopener noreferrer"
                     target="_blank">
                     <%= sig.display_name %>
                     <% if (sig.is_moderator) { %>
                         <span title="moderator or employee">&diams;</span>
+                        <% --count['other']; ++count['mod']; %>
                     <% } %>
                     <% if (sig.is_former_moderator) { %>
                         <span title="former moderator or former employee">&loz;</span>
+                        <% --count['other']; ++count['ex']; %>
                     <% } %>
                 </a><br />
                 <small class="text-muted" data-modified-at="<%= sig.created_at %>"
@@ -24,4 +28,5 @@
     <div class="expand">
         <a class="js-expand-signatories" href="#">Expand all <%= signatories.length %>&darr;</a>
     </div>
+    <p>(<%= count['mod'] %> moderators, <%= count['ex'] %> former moderators, <%= count['other'] %> regular users.)</p>
 </section>
